@@ -1,0 +1,398 @@
+/* Mobile Carousel - Perfect Responsive Design */
+.mobile-carousel-wrapper {
+    display: none;
+    position: relative;
+    width: 100%;
+    padding: var(--spacing-xl) 0;
+}
+
+.mobile-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    perspective: 1000px;
+    perspective-origin: center;
+}
+
+.carousel-viewport {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.carousel-item {
+    position: absolute;
+    width: 92%;
+    max-width: 100%;
+    height: auto;
+    min-height: 450px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.carousel-item.active {
+    z-index: 10;
+}
+
+/* Navigation Arrows - Enhanced */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    z-index: 20;
+    color: var(--text-primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-nav:hover:not(:disabled) {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+}
+
+.carousel-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-nav-prev {
+    left: 8px;
+}
+
+.carousel-nav-next {
+    right: 8px;
+}
+
+/* Pagination Dots - Modern */
+.carousel-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--spacing-lg);
+}
+
+.pagination-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+}
+
+.pagination-dot.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 8px rgba(14, 165, 233, 0.6);
+}
+
+.pagination-dot:hover:not(.active) {
+    border-color: var(--color-accent);
+    transform: scale(1.2);
+}
+
+/* Projects Carousel - Optimized */
+.mobile-carousel-wrapper .project-card {
+    height: auto;
+    min-height: 450px;
+    max-height: 540px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-carousel-wrapper .project-image {
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.mobile-carousel-wrapper .project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+}
+
+.mobile-carousel-wrapper .project-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.mobile-carousel-wrapper .project-description {
+    flex: 1;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.mobile-carousel-wrapper .project-technologies {
+    margin-bottom: var(--spacing-md);
+}
+
+.mobile-carousel-wrapper .project-stats {
+    margin-top: auto;
+    padding-top: var(--spacing-md);
+}
+
+/* Team Carousel - Optimized */
+.mobile-carousel-wrapper .team-card {
+    height: auto;
+    min-height: 420px;
+    max-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    overflow-y: auto;
+}
+
+.mobile-carousel-wrapper .avatar-photo {
+    width: 100px;
+    height: 100px;
+}
+
+.mobile-carousel-wrapper .member-name {
+    font-size: 1.25rem;
+}
+
+.mobile-carousel-wrapper .member-bio {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Services Carousel - Fixed Height Issues */
+.mobile-carousel-wrapper .service-card {
+    height: auto;
+    min-height: 380px;
+    max-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    overflow-y: auto;
+    gap: var(--spacing-md);
+}
+
+.mobile-carousel-wrapper .service-icon {
+    font-size: 2.75rem;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.mobile-carousel-wrapper .service-title {
+    font-size: 1.125rem;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.mobile-carousel-wrapper .service-description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    flex: 0 0 auto;
+    margin-bottom: 0;
+}
+
+.mobile-carousel-wrapper .service-features {
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.mobile-carousel-wrapper .service-features li {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+}
+
+/* Show carousel only on mobile */
+@media (max-width: 768px) {
+    .mobile-carousel-wrapper {
+        display: block;
+    }
+
+    .carousel-viewport {
+        min-height: 500px;
+    }
+
+    .carousel-item {
+        min-height: 470px;
+    }
+
+    /* CRITICAL FIX: Force card visibility */
+    .mobile-carousel-wrapper .service-card,
+    .mobile-carousel-wrapper .project-card,
+    .mobile-carousel-wrapper .team-card {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Theme-aware cards - adapt to light/dark mode */
+    .mobile-carousel-wrapper .glass-card {
+        background: var(--card-bg) !important;
+        color: var(--text-primary) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+        border: 1px solid var(--border-color);
+    }
+
+    .mobile-carousel-wrapper .glass-card h3,
+    .mobile-carousel-wrapper .glass-card h4,
+    .mobile-carousel-wrapper .glass-card .project-title,
+    .mobile-carousel-wrapper .glass-card .service-title,
+    .mobile-carousel-wrapper .glass-card .member-name {
+        color: var(--text-primary) !important;
+    }
+
+    .mobile-carousel-wrapper .glass-card p,
+    .mobile-carousel-wrapper .glass-card .project-description,
+    .mobile-carousel-wrapper .glass-card .service-description,
+    .mobile-carousel-wrapper .glass-card .member-bio {
+        color: var(--text-secondary) !important;
+    }
+
+    .mobile-carousel-wrapper .glass-card .project-category,
+    .mobile-carousel-wrapper .glass-card .member-role,
+    .mobile-carousel-wrapper .glass-card .member-department {
+        color: var(--text-secondary) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-viewport {
+        min-height: 480px;
+    }
+
+    .carousel-item {
+        width: 95%;
+        min-height: 450px;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-nav-prev {
+        left: 4px;
+    }
+
+    .carousel-nav-next {
+        right: 4px;
+    }
+
+    /* Projects - Compact */
+    .mobile-carousel-wrapper .project-card {
+        min-height: 420px;
+        max-height: 500px;
+    }
+
+    .mobile-carousel-wrapper .project-image {
+        height: 160px;
+    }
+
+    .mobile-carousel-wrapper .project-content {
+        padding: var(--spacing-md);
+    }
+
+    .mobile-carousel-wrapper .project-title {
+        font-size: 1.125rem;
+    }
+
+    /* Team - Compact */
+    .mobile-carousel-wrapper .team-card {
+        min-height: 400px;
+        max-height: 450px;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .mobile-carousel-wrapper .avatar-photo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .mobile-carousel-wrapper .member-name {
+        font-size: 1.125rem;
+    }
+
+    /* Services - Compact */
+    .mobile-carousel-wrapper .service-card {
+        min-height: 360px;
+        max-height: 420px;
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .mobile-carousel-wrapper .service-icon {
+        font-size: 2.5rem;
+    }
+
+    .mobile-carousel-wrapper .service-title {
+        font-size: 1rem;
+    }
+
+    .mobile-carousel-wrapper .service-description {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Smooth card transitions */
+@keyframes cardSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-item.active .project-card,
+.carousel-item.active .team-card,
+.carousel-item.active .service-card {
+    animation: cardSlide 0.4s ease-out;
+}
+
+/* Scrollbar styling for overflow content */
+.mobile-carousel-wrapper .project-content::-webkit-scrollbar,
+.mobile-carousel-wrapper .team-card::-webkit-scrollbar,
+.mobile-carousel-wrapper .service-card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mobile-carousel-wrapper .project-content::-webkit-scrollbar-track,
+.mobile-carousel-wrapper .team-card::-webkit-scrollbar-track,
+.mobile-carousel-wrapper .service-card::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+}
+
+.mobile-carousel-wrapper .project-content::-webkit-scrollbar-thumb,
+.mobile-carousel-wrapper .team-card::-webkit-scrollbar-thumb,
+.mobile-carousel-wrapper .service-card::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 2px;
+}
