@@ -7,50 +7,44 @@ const Projects = () => {
         {
             title: 'E-Commerce Platform',
             category: 'Web Development',
-            description: 'A full-featured e-commerce solution with inventory management, payment integration, and analytics dashboard.',
-            technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+            description: 'Scalable e-commerce solution with advanced inventory management and payment integration.',
+            technologies: ['React', 'Node.js', 'Stripe'],
             image: '/project_ecommerce_1766409949007.png',
-            stats: { users: '10K+', revenue: '₹50M+' },
         },
         {
             title: 'Learning Management System',
             category: 'Education Tech',
-            description: 'Comprehensive LMS platform for Inxcode Academy with video streaming, assessments, and progress tracking.',
-            technologies: ['Next.js', 'PostgreSQL', 'AWS', 'WebRTC'],
+            description: 'Comprehensive LMS platform featuring video streaming, interactive assessments, and progress tracking.',
+            technologies: ['Next.js', 'PostgreSQL', 'AWS'],
             image: '/project_lms_1766409972210.png',
-            stats: { students: '5K+', courses: '100+' },
         },
         {
             title: 'Mobile Banking App',
             category: 'Mobile Development',
-            description: 'Secure mobile banking application with biometric authentication, UPI payments, and real-time notifications.',
-            technologies: ['React Native', 'Firebase', 'Node.js', 'MongoDB'],
+            description: 'Secure banking application with biometric authentication and real-time transaction processing.',
+            technologies: ['React Native', 'Firebase', 'Node.js'],
             image: '/project_mobile_banking_1766409992920.png',
-            stats: { downloads: '50K+', rating: '4.8/5' },
         },
         {
             title: 'Healthcare Management',
             category: 'Enterprise Software',
-            description: 'Hospital management system with patient records, appointment scheduling, and billing automation.',
-            technologies: ['Angular', 'Java Spring', 'MySQL', 'Docker'],
+            description: 'Hospital management system streamlining patient records, scheduling, and billing workflows.',
+            technologies: ['Angular', 'Java Spring', 'MySQL'],
             image: '/project_healthcare_1766410011063.png',
-            stats: { hospitals: '25+', patients: '100K+' },
         },
         {
             title: 'AI Chatbot Platform',
             category: 'AI & ML',
-            description: 'Intelligent chatbot platform with natural language processing and multi-channel support.',
-            technologies: ['Python', 'TensorFlow', 'FastAPI', 'Redis'],
+            description: 'Intelligent conversational AI platform with natural language processing capabilities.',
+            technologies: ['Python', 'TensorFlow', 'FastAPI'],
             image: '/project_ai_chatbot_1766410031298.png',
-            stats: { conversations: '1M+', accuracy: '95%' },
         },
         {
             title: 'Project Management Tool',
             category: 'SaaS',
-            description: 'Collaborative project management platform with Kanban boards, time tracking, and team collaboration.',
-            technologies: ['Vue.js', 'Laravel', 'PostgreSQL', 'Redis'],
+            description: 'Collaborative workspace platform with Kanban boards and real-time team synchronization.',
+            technologies: ['Vue.js', 'Laravel', 'Redis'],
             image: '/project_management_tool_1766410047195.png',
-            stats: { teams: '500+', projects: '10K+' },
         },
     ];
 
@@ -112,14 +106,6 @@ const Projects = () => {
                                         <span key={i} className="tech-tag">{tech}</span>
                                     ))}
                                 </div>
-                                <div className="project-stats">
-                                    {Object.entries(project.stats).map(([key, value]) => (
-                                        <div key={key} className="stat">
-                                            <span className="stat-value">{value}</span>
-                                            <span className="stat-key">{key}</span>
-                                        </div>
-                                    ))}
-                                </div>
                             </div>
                         </div>
                     ))}
@@ -138,16 +124,8 @@ const Projects = () => {
                                 <h3 className="project-title">{project.title}</h3>
                                 <p className="project-description">{project.description}</p>
                                 <div className="project-technologies">
-                                    {project.technologies.map((tech, i) => (
+                                    {project.technologies.slice(0, 3).map((tech, i) => (
                                         <span key={i} className="tech-tag">{tech}</span>
-                                    ))}
-                                </div>
-                                <div className="project-stats">
-                                    {Object.entries(project.stats).map(([key, value]) => (
-                                        <div key={key} className="stat">
-                                            <span className="stat-value">{value}</span>
-                                            <span className="stat-key">{key}</span>
-                                        </div>
                                     ))}
                                 </div>
                             </div>

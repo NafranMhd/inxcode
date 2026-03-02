@@ -5,44 +5,43 @@
 
 .contact-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: var(--spacing-3xl);
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-xl);
     align-items: start;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 /* Contact Info */
-.contact-info {
-    position: sticky;
-    top: 100px;
-}
 
 .info-header {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
 }
 
 .info-header h3 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 0.25rem;
     color: var(--text-primary);
 }
 
 .info-header p {
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
+    margin: 0;
 }
 
 .info-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
 }
 
 .info-item {
     display: flex;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
@@ -58,8 +57,19 @@
 }
 
 .info-icon {
-    font-size: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    transition: all var(--transition-base);
+}
+
+.info-icon svg {
+    width: 22px;
+    height: 22px;
 }
 
 .info-content h4 {
@@ -119,7 +129,7 @@
 }
 
 .contact-form {
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-lg);
 }
 
 .form-row {
@@ -178,6 +188,17 @@
     margin-top: var(--spacing-md);
     padding: var(--spacing-md);
     background: #10b981;
+    color: white;
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.form-error {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: #ef4444;
     color: white;
     border-radius: var(--radius-md);
     text-align: center;

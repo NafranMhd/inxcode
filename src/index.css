@@ -282,7 +282,7 @@ a:hover {
 }
 
 .section-padding {
-  padding: var(--spacing-3xl) var(--spacing-md);
+  padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .container {
@@ -375,14 +375,14 @@ a:hover {
 /* Professional Section Headers */
 .section-header {
   text-align: center;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-lg);
   position: relative;
 }
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   position: relative;
   display: inline-block;
 }
@@ -410,7 +410,7 @@ a:hover {
 /* Responsive Typography */
 @media (max-width: 768px) {
   .section-padding {
-    padding: var(--spacing-2xl) var(--spacing-sm);
+    padding: var(--spacing-lg) var(--spacing-sm);
   }
 
   .container {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import api from '../api/apiClient';
 import './Contact.css';
 
 const Contact = () => {
@@ -10,7 +11,8 @@ const Contact = () => {
         message: '',
     });
 
-    const [formStatus, setFormStatus] = useState('');
+    const [formStatus, setFormStatus] = useState(''); // '', 'loading', 'success', 'error'
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleChange = (e) => {
         setFormData({
@@ -19,40 +21,51 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Form submission logic would go here
-        setFormStatus('success');
-        setTimeout(() => {
-            setFormStatus('');
+        setFormStatus('loading');
+        setErrorMsg('');
+
+        try {
+            await api.submitContact(formData);
+            setFormStatus('success');
             setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-        }, 3000);
+            setTimeout(() => setFormStatus(''), 5000);
+        } catch (error) {
+            setFormStatus('error');
+            setErrorMsg(error.message || 'Failed to send message. Please try again.');
+            setTimeout(() => setFormStatus(''), 5000);
+        }
     };
 
     const contactInfo = [
         {
-            icon: '📍',
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
             title: 'Visit Us',
-            info: '123 Innovation Street, Tech City',
-            link: '#',
+            info: 'Hijra School Road, Oddamavadi, Batticaloa, Sri Lanka',
+            link: 'https://maps.google.com/?q=Hijra+School+Road,+Oddamavadi',
+            color: '#ef4444'
         },
         {
-            icon: '📧',
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
             title: 'Email Us',
-            info: 'hello@inxcode.com',
-            link: 'mailto:hello@inxcode.com',
+            info: 'inxcode.office@gmail.com',
+            link: 'mailto:inxcode.office@gmail.com',
+            color: '#0ea5e9'
         },
         {
-            icon: '📞',
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
             title: 'Call Us',
-            info: '+94 (123) 456-7890',
-            link: 'tel:+94123456789',
+            info: '+94 77 67 67 925',
+            link: 'tel:+94776767925',
+            color: '#10b981'
         },
         {
-            icon: '⏰',
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
             title: 'Working Hours',
-            info: 'Mon - Fri: 9:00 AM - 6:00 PM',
+            info: 'Mon - Fri: 8:30 AM - 5:30 PM',
             link: '#',
+            color: '#f59e0b'
         },
     ];
 
@@ -81,7 +94,7 @@ const Contact = () => {
                                     className="info-item"
                                     style={{ animationDelay: `${index * 0.1}s` }}
                                 >
-                                    <div className="info-icon">{item.icon}</div>
+                                    <div className="info-icon" style={{ color: item.color, background: `${item.color}15` }}>{item.icon}</div>
                                     <div className="info-content">
                                         <h4>{item.title}</h4>
                                         <p>{item.info}</p>
@@ -128,7 +141,7 @@ const Contact = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        placeholder="John Doe"
+                                        placeholder="Enter your full name"
                                         required
                                     />
                                 </div>
@@ -140,7 +153,7 @@ const Contact = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        placeholder="john@example.com"
+                                        placeholder="Enter your email address"
                                         required
                                     />
                                 </div>
@@ -155,7 +168,7 @@ const Contact = () => {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        placeholder="+94 123 456 7890"
+                                        placeholder="Enter your phone number"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -166,7 +179,7 @@ const Contact = () => {
                                         name="subject"
                                         value={formData.subject}
                                         onChange={handleChange}
-                                        placeholder="How can we help?"
+                                        placeholder="Enter the subject"
                                         required
                                     />
                                 </div>
@@ -179,22 +192,30 @@ const Contact = () => {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    placeholder="Tell us about your project or inquiry..."
+                                    placeholder="Describe your project or inquiry..."
                                     rows="6"
                                     required
                                 ></textarea>
                             </div>
 
-                            <button type="submit" className="btn-primary submit-btn">
-                                Send Message
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M18 2L9 11M18 2l-7 16-2-7-7-2 16-7z" />
-                                </svg>
+                            <button type="submit" className="btn-primary submit-btn" disabled={formStatus === 'loading'}>
+                                {formStatus === 'loading' ? 'Sending...' : 'Send Message'}
+                                {formStatus !== 'loading' && (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M18 2L9 11M18 2l-7 16-2-7-7-2 16-7z" />
+                                    </svg>
+                                )}
                             </button>
 
                             {formStatus === 'success' && (
                                 <div className="form-success">
                                     ✓ Message sent successfully! We&apos;ll get back to you soon.
+                                </div>
+                            )}
+
+                            {formStatus === 'error' && (
+                                <div className="form-error">
+                                    ✗ {errorMsg}
                                 </div>
                             )}
                         </form>

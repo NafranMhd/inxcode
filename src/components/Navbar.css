@@ -5,50 +5,58 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 1rem;
+    padding: 0.75rem 1rem; /* Reduced outer padding */
     transition: all var(--transition-base);
 }
 
 .navbar-container {
     max-width: 1400px;
     margin: 0 auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     background: var(--navbar-bg);
     backdrop-filter: var(--navbar-blur);
     -webkit-backdrop-filter: var(--navbar-blur);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-full);
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.25rem; /* Reduced inner padding */
     box-shadow: 0 4px 20px var(--shadow);
     transition: all var(--transition-base);
+    height: 60px; /* Fixed compact height */
 }
 
 .navbar.scrolled .navbar-container {
-    padding: 0.5rem 1.5rem;
+    padding: 0.4rem 1.25rem; /* Even more compact on scroll */
     box-shadow: 0 8px 30px var(--shadow);
+    height: 56px;
 }
 
 /* Logo */
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     cursor: pointer;
     transition: transform var(--transition-fast);
 }
 
 .navbar-logo:hover {
-    transform: scale(1.05);
+    transform: translateY(-1px);
 }
 
 .logo-image {
-    height: 40px;
+    height: 32px; /* Reduced from 40px */
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 212, 255, 0.3));
-    transition: filter var(--transition-fast);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: all var(--transition-base);
+}
+
+.logo-image.dark-mode-logo {
+    height: 32px; /* Consistent height */
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2));
+    margin: 0;
 }
 
 .navbar-logo:hover .logo-image {
@@ -105,6 +113,8 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    height: 100%; /* Ensure it takes full height of container */
+    justify-self: end;
 }
 
 /* Theme Toggle */
@@ -112,8 +122,8 @@
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    width: 42px;
-    height: 42px;
+    width: 40px; /* Match logo height roughly */
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,7 +133,7 @@
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1) rotate(15deg);
+    transform: rotate(15deg);
     background: var(--color-accent);
     color: white;
     border-color: var(--color-accent);
@@ -133,8 +143,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 /* Mobile Menu Button */
@@ -272,6 +282,8 @@
 
     .navbar-container {
         padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
     }
 
     .navbar-links {

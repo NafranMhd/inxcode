@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import './Navbar.css';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { isDark } = useTheme();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,7 +39,11 @@ const Navbar = () => {
                 <div className="navbar-container">
                     {/* Logo */}
                     <div className="navbar-logo" onClick={() => scrollToSection('hero')}>
-                        <img src="/logo.png" alt="Inxcode Logo" className="logo-image" />
+                        <img
+                            src={isDark ? "/whitelogo.png" : "/logo.png"}
+                            alt="Inxcode Logo"
+                            className={`logo-image ${isDark ? 'dark-mode-logo' : ''}`}
+                        />
                         <span className="logo-name">Inxcode</span>
                     </div>
 
@@ -76,7 +82,11 @@ const Navbar = () => {
                 <div className="mobile-menu-content">
                     <div className="mobile-menu-header">
                         <div className="navbar-logo">
-                            <img src="/logo.png" alt="Inxcode Logo" className="logo-image" />
+                            <img
+                                src={isDark ? "/whitelogo.png" : "/logo.png"}
+                                alt="Inxcode Logo"
+                                className={`logo-image ${isDark ? 'dark-mode-logo' : ''}`}
+                            />
                             <span className="logo-name">Inxcode</span>
                         </div>
                         <button
